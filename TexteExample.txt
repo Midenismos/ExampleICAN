@@ -1,0 +1,3 @@
+Création d'un .txt pour vous montrer que le moindre élément ajouté,
+modifié ou supprimé sera visible sur Sourcetree (ou autres logiciel
+tel que GitKraken ou GitDesktop)
