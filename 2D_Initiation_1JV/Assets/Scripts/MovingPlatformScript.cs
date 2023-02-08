@@ -7,19 +7,25 @@ public class MovingPlatformScript : MonoBehaviour
     public Transform position_1;
     public Transform position_2;
 
-    public float speed = 1.0f;
+    public float speed = 5f;
 
     private List<GameObject> touchingObjects = new();
 
     [SerializeField]
     public bool isMoving;
 
+    [SerializeField]
+    private bool reverse = false;
+
     void Update()
     {
         if (!isMoving) return;
 
         Vector3 oldPosition = transform.position;
-        transform.position = Vector3.Lerp(position_1.position, position_2.position, Mathf.PingPong(Time.time * speed, 1.0f));
+        transform.position = Vector3.MoveTowards(transform.position, (reverse?position_1:position_2).position, speed * Time.deltaTime);
+
+        if(transform.position == (reverse ? position_1 : position_2).position)
+            reverse = !reverse;
 
         Vector3 displacement = transform.position - oldPosition;
 
